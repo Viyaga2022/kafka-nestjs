@@ -1,7 +1,18 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 
 @Controller('orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
+
+  @Post()
+  creteOrder(@Body() orderData: any) {
+    return this.ordersService.createOrder(orderData)
+  }
+
+  @Get()
+  getAllOrders() {
+    console.log('api-orders-controller');
+    return this.ordersService.getAllOrders()
+  }
 }
